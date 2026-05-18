@@ -94,6 +94,8 @@ Use `assets/project-template/scripts/render_report.py` to convert Markdown to st
 
 If any of the above is missing, do not silently skip — use the PDF status template in `workflow.md` "Final Response to User" so the user knows exactly what to install.
 
+**Windows + Codex sandbox 例外**：在 Windows 上通过 codex MCP sandbox 调用 `xelatex`/`pdflatex` 可能遇到 `CreateProcessAsUserW failed: 5`，即使本机 TeXLive 已就绪。这是 codex sandbox 的进程权限限制（与 `approval-policy` 无关），不是 TeX 缺失或字体缺失。此时不要重试编译，直接在 `logs/pdf_compile_attempt.md` 记录错误码并在最终报告末尾写一行 `.tex 已生成，请在 sandbox 外手动跑 xelatex reports/final_topic_report.tex 出 PDF`。
+
 ## Density Standard
 
 For standard/deep reports, include:
