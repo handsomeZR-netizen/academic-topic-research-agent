@@ -5,293 +5,184 @@
 <h1 align="center">Academic Topic Research Agent</h1>
 
 <p align="center">
-  <b>中文默认的学术选题前置调研开发包</b><br/>
-  把一句话研究想法 → 变成导师能看的 v2 风格调研报告
-</p>
-
-<p align="center">
-  <a href="#你是不是经历过这种事">扎心场景</a> ·
-  <a href="#它是什么">是什么</a> ·
-  <a href="#跟普通-web-搜索--gpt-到底有什么不同">为什么不是用 GPT</a> ·
-  <a href="#效果截图">效果截图</a> ·
-  <a href="#5-分钟上手">5 分钟上手</a>
+  把一句话研究想法 → 一份能拍给导师看的中文调研报告
 </p>
 
 ---
 
-## 你是不是经历过这种事
+## 这玩意儿到底是什么
 
-> **导师**："去把这个方向调研一下，下周给我看。"
-> **你**：（打开 Google Scholar / 知网 / 百度学术）……搜了 3 小时，标签页开了 50 个，**啥也没整理出来**。
+就是一个 skill。你装到 Claude Code 或者 OpenAI Codex 里，跟它说一句你正在琢磨的研究方向，它会给你产出一份中文调研报告。结构是参考 NeurIPS、ICML、ICLR、CHI、LAK 这类顶会前期调研的方式来的：项目核心判断、为什么适合这个 venue、跟前人工作的差异、数据可行性、风险与时间表，全套。
 
-> **你**：（转头问 GPT）"帮我调研一下 xxx 方向。"
-> **GPT**：编了 5 篇不存在的论文，作者名是真的，**DOI 是假的**。等你发现的时候导师已经追问了。
+Markdown、LaTeX、PDF 三种格式同时出（本机有 TeX 环境才会编 PDF）。
 
-> **你**：（终于熬出来一份 Word 文档）……导师看了三句话：
-> "**核心判断是什么？数据从哪来？跟前人的工作差异在哪？为什么投这个会？**"
-> 你一个都答不上。
-
-> **你**：（想做"完整版前期调研"）……手动整理 100 篇论文的元数据、写一遍可行性、列一遍标题候选、再排一遍版……**整整一周，连摘要都还没动**。
-
-如果上面有任何一句戳到你，**这个 skill 就是为你写的**。
+我不太想用"研究助手"这种词来包装它。说白了它就是把"我有个想法 → 导师能看的方案"这条路上你本来要做的烂活——搜文献、整理元数据、看公开数据集能不能用、查近三年这个会都收了什么类型的工作、写一遍可行性、起几个标题、排版——批量替你做了。
 
 ---
 
-## 它是什么
+## 我自己为啥写这个
 
-一句话：**把"一句话研究想法" → 一份"可以直接拍给导师"的 CHI 风格中文调研报告，中间所有的烂活我们替你做了。**
+说实话，写这个是因为我被坑过太多次了。
 
-具体一点：这是一个 **Claude Code + OpenAI Codex 双平台** 的 skill（技能包），按 CHI / LAK / L@S / AIED / CSCW 等顶会前期调研的标准，帮你完成从文献元数据搜集 → 数据可行性判断 → 标题摘要候选 → v2 风格 Markdown/LaTeX/PDF 报告的**全套流水线**。
+之前有一次，导师扔过来一个方向让我调研一周。我打开 Google Scholar，搜了一上午，标签页开到 50 多个。中午想偷个懒，转头问 GPT："xxx 方向最近三年都有谁在做？" GPT 一口气给了我 12 篇论文，作者、年份、标题看上去都很正常。我心情大好，复制到 Notion 里，准备整理。
 
-**它会替你做的事：**
+结果第二天发现，里面有 4 篇是它编的——作者是真的，年份是真的，DOI 是它根据文章题目瞎拼的，论文不存在。
 
-| 阶段 | 你只需要给一句话主题 + 目标 venue | 它会产出 |
-|---|---|---|
-| 1 · 主动询问 | 主题、目标会议、深度、数据类型缺哪个 → 它会先停下来一次性问齐 | `config/topic_input.yaml` 填好的版本 |
-| 2 · 文献元数据 | 三档深度可选：quick 10-20 篇 / standard 30-50 篇 / deep 80-120 篇 | `paper_matrix.csv` + 证据轨迹 |
-| 3 · 数据可行性 | 自动搜公开数据集、benchmark、研究路径 | `Pass / Weak Pass / Fail` 三档判定 |
-| 4 · 标题摘要 | 3-8 个标题候选（保守 / venue-fit / 大胆 / 方法导向）+ 1-3 段摘要 | `title_candidates.md` + `abstract_candidates.md` |
-| 5 · v2 报告 | 17 节骨架（quick 任务自动精简到 5-7 节） | `final_topic_report.md` + `.tex` + `.pdf` |
+那一刻我有点崩溃。不是因为 GPT 错了——它本来就会错——而是我意识到，"我以为我在做调研，其实我在帮 GPT 校对它的胡说"。
 
-**适合谁用：**
-- 研究生准备开题、调研、找方向、找 CHI/LAK 之类的目标 venue
-- 老师/博后想快速评估一个学生想法的可行性
-- 已经写了一段 idea，想知道有没有"被人做过"、能不能投这个会
-- 想做"100 篇论文级别"的完整文献网络但不想手工筛 3 天
+更崩溃的是，等我把这周的"调研"发给导师，他三秒钟就问了一个问题：
+
+> "你这个跟 CMU 那篇 24 年的工作差异在哪？"
+
+我答不上来。因为我搜了 50 篇，但我没真的把它们摆在一张表上比过——我只是把标题往文档里贴。导师不是要看链接，他要看的是**判断**。
+
+这个 skill 就是为这种时刻写的。它会在你点"开始搜文献"之前先停下来，把"你到底想干嘛"这件事问清楚（主题、目标会议、想搜多深、数据从哪来）。然后它会按一套**不让自己编造**的规则去做——遇到验证不了的来源，它会标 `Unknown`、`TODO`、`Requires Manual Verification`，绝不胡说一个 DOI 出来。最后它给你一份能直接发给导师的报告，导师问"差异在哪"，你能在第二页就指给他看。
 
 ---
 
-## 跟普通 web 搜索 / GPT 到底有什么不同
+## 跟我直接用 GPT 搜一下有啥不一样
 
-很多人会问：**"我直接 Google Scholar / 百度学术 / ChatGPT 一下不就行了？"**——这是最高频的问题。我们逐项对比，**这也是这个 skill 存在的全部理由**：
+我知道很多人会这么想，因为我自己也这么想过。差异其实不在"它更聪明"，反而在"它更克制"。
 
-| 你的痛点 | 普通 web 搜索 / GPT 的表现 | 本 skill 怎么做 |
-|---|---|---|
-| **"GPT 编了一篇不存在的论文，我引用进去差点出大事"** | 没有任何防伪——作者真、年份假、DOI 是瞎拼的 | **硬约束不准编造**：来源不可验证一律标 `Unknown` / `TODO` / `Requires Manual Verification`，宁可少给也不胡说 |
-| **"我问 GPT 这个方向有没有人做过，它说没有，我兴奋了一周，结果被导师秒锤"** | 容易拍胸脯说"没人做过" | 强制安全句式："**在本次检索范围下**，A、B 已被覆盖，但**少见**同时结合 A+B+C 并落在 D 场景的工作"——给的是探索结论，不是宇宙真理 |
-| **"探索得一点都不深入，搜了 30 个链接还是不知道前人怎么做的"** | 给一堆标题让你自己读 | 三档深度（10-20 / 30-50 / 80-120 篇）+ 自动聚类、归类、找差距，**最后给一张 prior-work 对比表**，而不是一堆链接 |
-| **"整理太麻烦了，标签页开了 50 个，根本不想再点第 51 个"** | 整理工作全部丢给你 | 自动写进 `paper_matrix.csv`（24 列，含主题、方法、数据、贡献、limitations、和本课题的关系），可以直接 Excel/Notion 打开排序 |
-| **"导师问'数据从哪来'，我支吾了 10 秒"** | 完全不管数据 | 必做 `Pass / Weak Pass / Fail` 三档判定 + 给替代研究路径（Wizard-of-Oz / vignette / 形成性访谈），导师面前可以 1 秒答 |
-| **"搜着搜着就跑偏了，最后写的方向跟一开始想的不是一个东西"** | 容易被"好搜的数据"或"热门话题"带偏 | 有 `topic_lock.yaml` 把原意锁住；后续模块只要偏离就自动写 `05_topic_drift_warning.md` 警告你 |
-| **"我也不知道这个方向投哪个会合适"** | 不给定位建议 | 标题候选直接做 4 种 venue 适配（保守 / CHI 风 / 大胆 / 方法导向），还有 `06_final_recommendation.md` 给 **推进 / 收窄 / 重做** 决断 |
-| **"我没时间排版，但导师要 PDF"** | 给你一堆 Markdown 自己折腾 | 输出 Markdown + LaTeX + PDF（本机有 TeX 时自动编译），用 `ctexart` + tcolorbox 蓝色框，直接是 v2 风格的成品 |
-| **"我搜的全是英文论文，中文期刊一篇都没看到"** | 中文期刊覆盖一般 | `config/sources.yaml` 默认开 OpenAlex/Crossref/DBLP/Semantic Scholar，你可以自己加 CNKI/万方 |
-| **"GPT 让我下了一堆付费 PDF，结果被学校 IP 封了"** | 不管法律合规 | 只下 OA PDF 或你提供的文件，付费内容只收元数据 |
+**它会先问你。** 你扔一句"帮我调研 xxx 方向"过去，它不会立刻开搜。它会问你四件事——主题确认、目标会议、想搜多深（10-20 篇 / 30-50 篇 / 80-120 篇）、数据从哪来（公开数据集还是要做用户研究）。一次性问完，回答完才开始干活。听起来啰嗦，但少了这一步，搜出来的东西很容易跑偏，最后写出来发现根本不是你想做的方向。
 
-**一句话总结：** 普通搜索给你**链接**；GPT 给你**编造的链接**；这个 skill 给你**导师能签字的研究方案**——从"我有个想法"到"PDF 在邮箱里"全打通了。
+**它不会瞎编文献。** 这点写在 skill 的硬约束里了。来源验不了，它就标 `Unknown` 或 `TODO`，宁可少写一行，也不给你一个假 DOI。我做这个的初衷之一就是这个——我自己被编造的论文坑过，不想再被坑一次。
+
+**它不会拍胸脯说"没人做过"。** 这是 GPT 最容易掉的坑——你问它新颖性，它一上来就告诉你这个方向很新。skill 里强制了一个句式："**在本次检索范围下**，A 和 B 已经被覆盖，但比较少看到同时结合 A+B+C 并落在 D 场景的工作。" 它给的是探索结论，不是宇宙真理——你后面有的找的时候，不会被自己一开始的话打脸。
+
+**它真的会查数据可行性。** 你要做这个方向，公开数据集够不够？ImageNet 还是 CIFAR 还是要自己标？做用户研究的话访谈几个人才够？它会把每个候选数据集去核 access page、license、样本量、和你课题的匹配/不匹配，然后给一个 `Pass / Weak Pass / Fail` 的判定，再附几条"如果不 Pass 你可以走什么路线"——形成性访谈、Wizard-of-Oz、vignette、标注协议、benchmark 构建。这些不是它编的，是从协议里查出来的。
+
+**它会防止你跑偏。** 这个我挺喜欢。你一开始说要研究 A，搜着搜着发现 B 方向数据特别好找，文献也很多，你可能不自觉就开始写 B 了。skill 里有个 `topic_lock.yaml` 把你最初的意图锁住，后面任何一个模块只要发现产出和最初意图有偏差，就会写一份 `05_topic_drift_warning.md` 给你提个醒。
+
+**它给的不是链接。** GPT 给你链接列表你自己整理；skill 给你一个 24 列的 CSV（题目、作者、年份、venue、方法、数据、贡献、局限、和你课题的关系、覆盖了哪些维度、还差哪些维度），你可以直接 Excel 打开排序、筛选、画图。如果你做 deep 模式（80-120 篇），这个 CSV 就是你写 related work section 的脚手架。
+
+**它给的是导师能签字的报告，不是聊天记录。** 输出是 Markdown + LaTeX + PDF（如果你本机有 TeX），不是一堆要素堆叠的对话气泡。LaTeX 用的是 ctex + tcolorbox，深蓝色的核心判断框、表格、章节自动编号，发出去就是论文方案那种感觉。
+
+不过我也得承认一件事：**这个 skill 不能替你判断**。它能把"看得见的工作"列清楚，但"这个方向值不值得做"——这个判断还是得你来。它最多在 `06_final_recommendation.md` 里写一个"推进 / 收窄 / 重做"的建议，但那个建议要不要听，是你的事。
 
 ---
 
-## 效果截图
+## 截图
 
-这是用本 skill 产出的真实 v2 风格报告（CHI 2027 投稿方向「课中微决策与概念干预」）：
+这是用它做出来的一份真实报告（主题是 Transformer 自监督预训练，瞄准 NeurIPS/ICML/ICLR）：
 
 <table>
   <tr>
     <td align="center" width="50%">
       <img src="assets/screenshots/01-cover.png" alt="封面" width="100%"/><br/>
-      <sub><b>① 封面 + 一句话概括</b><br/>蓝色 tcolorbox 框出核心立场，目标会议/关键词一目了然</sub>
+      <sub>封面 + 一句话概括。蓝框写出"方向值得做，但要收窄到这个具体题面"——不是简单说 yes/no</sub>
     </td>
     <td align="center" width="50%">
-      <img src="assets/screenshots/02-toc.png" alt="目录" width="100%"/><br/>
-      <sub><b>② 17 节骨架目录</b><br/>从核心判断到风险时间表，导师 1 分钟就能浏览结构</sub>
+      <img src="assets/screenshots/02-core-judgment.png" alt="核心判断" width="100%"/><br/>
+      <sub>项目核心判断。"易混方向与排除理由"——这是导师追问"你这个跟 Swin/MaxViT 有啥区别"时你的答案</sub>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="assets/screenshots/03-core-judgment.png" alt="核心判断" width="100%"/><br/>
-      <sub><b>③ 项目核心判断</b><br/>"核心问题不是…而是…"——v2 风格的标志性论证</sub>
+      <img src="assets/screenshots/03-venue-fit.png" alt="venue 适配" width="100%"/><br/>
+      <sub>为什么适合这个 venue。会议-代表性工作对照表，让导师看到"近三年这个会都收什么风格"</sub>
     </td>
     <td align="center">
-      <img src="assets/screenshots/04-mapping-table.png" alt="映射表" width="100%"/><br/>
-      <sub><b>④ 概念状态 → 教师动作映射表</b><br/>每篇 v2 报告至少 5 张表：定位 / 先驱 / 数据 / 评价 / 风险</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="assets/screenshots/05-evaluation.png" alt="评价路线" width="100%"/><br/>
-      <sub><b>⑤ 评价整体设计</b><br/>4 个 Study 串成路线：Formative → Tech/Expert → Vignette → Micro-deployment</sub>
-    </td>
-    <td align="center">
-      <img src="assets/screenshots/06-final-summary.png" alt="最终总结" width="100%"/><br/>
-      <sub><b>⑥ 最终总结</b><br/>回到一句话立场——这是导师审阅时最先读、最后读的部分</sub>
+      <img src="assets/screenshots/04-dataset-feasibility.png" alt="数据可行性" width="100%"/><br/>
+      <sub>主要数据集与可行性。每个数据集都有"证据状态"列——Supported 就是真去翻过 access page</sub>
     </td>
   </tr>
 </table>
 
+<p align="center">
+  <img src="assets/screenshots/05-venue-positioning.png" alt="投稿定位" width="80%"/><br/>
+  <sub>投稿定位表。NeurIPS / ICML / ICLR 各自的优势和风险，导师问"投哪个会"你不用现想</sub>
+</p>
+
 ---
 
-## 5 分钟上手
+## 怎么装
 
-### 安装到 Claude Code
+### Claude Code
 
 ```bash
-# 把本仓库 clone 到 Claude Code 的 skills 目录
-cd ~/.claude/skills        # macOS / Linux
-# 或 Windows: cd "$env:USERPROFILE\.claude\skills"
+# 进到 Claude Code 的 skills 目录
+cd ~/.claude/skills                     # macOS / Linux
+# Windows: cd "$env:USERPROFILE\.claude\skills"
 
 git clone https://github.com/handsomeZR-netizen/academic-topic-research-agent.git
 ```
 
-下次启动 Claude Code 时，skill 会自动加载。**触发方式**：
+下次启动 Claude Code 会自动加载。然后就是直接跟它说话：
 
 ```
-你: 帮我把"用 AI 辅助高中物理老师做课堂决策"这个想法做成 CHI 风格的中文调研报告，standard 深度。
+我在琢磨一个方向，想用图神经网络做药物-靶点相互作用预测，
+想投 NeurIPS 或 ICLR，帮我做一份 standard 深度的调研报告。
 ```
 
-skill 会**先停下来问你 4 个问题**（主题确认、目标 venue、深度、数据类型），你一次回完后才开始搜文献。
+它会先停下来问你 3-4 件事（确认主题、确认 venue、数据从哪来、有没有已经写好的 proposal），你回答完它才开始搜。
 
-### 安装到 OpenAI Codex
+### OpenAI Codex
 
-同样 clone 到 Codex 的 agents 目录即可。仓库自带 `agents/openai.yaml`，Codex 会自动注册：
-
-```yaml
-short_description: "中文默认的学术选题前置调研开发包：三档文献元数据、v2 风格 Markdown/LaTeX/PDF 报告、标题/摘要候选、数据可行性"
-allow_implicit_invocation: true
-```
+同样的 clone 法，放到 Codex 的 agents 目录就行。仓库自带 `agents/openai.yaml`，Codex 会读它。
 
 ### 想要 PDF 的话
 
-skill 默认输出 Markdown + LaTeX。**PDF 是可选的**，需要本地有：
+默认输出 Markdown 和 LaTeX。PDF 只在你本机有 TeX 时才编——需要 `xelatex` + `ctex` + 中文字体（macOS 都有；Windows 装宋体/黑体/楷体/仿宋；Linux 装 `fonts-noto-cjk`）。Pandoc 装上的话 Markdown → LaTeX 转换更精细，没装也能跑（会用一个保守的 fallback 转换器）。
 
-- `xelatex`（TeX Live / MacTeX / MikTeX 任一）
-- `ctex` 宏包（`tlmgr install ctex`）
-- 中文字体（macOS 自带；Windows 需宋体/黑体/楷体/仿宋；Linux 需 `fonts-noto-cjk`）
-- Pandoc（可选，提高 Markdown → LaTeX 转换保真度）
-
-如果环境缺组件，skill 会**明确告诉你缺什么**——不会静默失败：
+如果环境缺东西，它会告诉你缺什么，不会装作成功了：
 
 ```
 PDF 跳过：本机未检测到 xelatex / latexmk。Markdown 与 LaTeX 已生成，
-可在有 TeX 环境的机器上用 xelatex 编译。
+可以在有 TeX 环境的机器上用 xelatex 编译。
 ```
 
 ---
 
-## 完整用法
+## 三档深度怎么选
 
-### 三档深度怎么选
+| 深度 | 大概多少篇 | 适合啥时候用 |
+|---|---:|---|
+| `quick` | 10-20 篇 | 临时被问到一个方向，半小时内想知道"这方向有没有人做过、坑在哪" |
+| `standard` | 30-50 篇 | 正经的前期调研，导师下周要看（**默认这一档**） |
+| `deep` | 80-120 篇 | 开题报告、博士选题、想做"完整文献网"的那种系统性扫描 |
 
-| 深度 | 文献元数据量 | 适合场景 | 大概耗时 |
-|---|---:|---|---:|
-| `quick` | 10-20 篇 | 快速定方向、标题润色、写 1 页备忘录 | 10-20 分钟 |
-| `standard` | 30-50 篇 | 标准前期调研，含完整 v2 报告（**默认**） | 40-90 分钟 |
-| `deep` | 80-120 篇 | "100 篇文献网"、系统性扫 venue、博士开题 | 2-4 小时 |
-
-**质量阈值**：不只是数量——至少 ⅓ 的文献要达到 `keep` 或 `background` 级别，纯 `candidate` 不算数。
-
-### 7 个可组合模块
-
-skill 不是死板流水线，是**模块菜单**。assistant 会根据你的需求挑：
-
-```
-Module A · Intent & Boundary    →  topic_lock.yaml
-Module B · Metadata Reconnaissance →  paper_matrix.csv + evidence_trace.jsonl
-Module C · Evidence Map & Gap   →  gap_matrix.md
-Module D · Dataset Feasibility  →  dataset_candidates.csv + Pass/Weak/Fail
-Module E · Research Design      →  experiment_plan.md
-Module F · Title & Abstract     →  title_candidates.md + abstract_candidates.md
-Module G · v2 Final Report      →  final_topic_report.md/.tex/.pdf
-```
-
-### 进度自检
-
-任何时候想看"还差什么没做"：
-
-```bash
-python assets/project-template/scripts/workflow_checklist.py --list
-```
-
-输出每个模块该有什么产物，对照一下就知道还缺哪些。
-
-### 主动询问示例
-
-如果你只给一句话，skill 会用这种格式问你（同时支持 Markdown 编号清单和 Claude Code 的 `AskUserQuestion` 卡片）：
-
-```
-为了把调研做扎实，我先确认几件事，你可以一次性回答：
-
-1. 研究主题 / 核心问题？（一两句话即可）
-2. 目标会议或期刊？（CHI / LAK / L@S / AIED / EDM / CSCW / IJHCI / 中文期刊 / 其他）
-3. 想做多深？（quick 10-20 / standard 30-50 / deep 80-120）
-4. 数据 / 研究类型？（公开数据集 / 课堂数据 / 访谈·WoZ / 标注 / vignette / 待定）
-
-如果方便，再补充：年份范围、必含/必避关键词、是否有 proposal/PDF、时间预算、输出语言。
-```
-
-回答完后，所有答案会被写进 `config/topic_input.yaml`，**然后**才开始搜文献。
+数量只是一方面，更重要的是质量阈值——至少 1/3 的文献要达到 `keep` 或 `background` 级别，纯候选不算数。
 
 ---
 
-## 目录结构
+## 它不能干啥（承认一下）
+
+- **它不能替你判断**。能告诉你"这个方向 87 篇相关文献"，但"值不值得做"是你的判断。
+- **它对完全冷门的方向会缩水**。如果你的主题就是只有 5 个人在做，deep 模式也搜不到 80 篇，它会如实告诉你上限是多少，不会凑数。
+- **中文期刊覆盖一般**。默认开的是 OpenAlex / Crossref / DBLP / Semantic Scholar，CNKI / 万方默认是关的。你可以自己在 `config/sources.yaml` 里加，但加完它得真能爬到才行。
+- **它不会下载付费 PDF**。只下 OA 的或者你自己给它的文件。如果你想看的论文是 ACM/IEEE 付费的，它只会收元数据，PDF 你得自己想办法。
+- **PDF 编译是可选的**。没装 TeX 的话只有 MD + LaTeX，需要你去有 TeX 的机器上编。
+
+---
+
+## 目录长这样
 
 ```
 academic-topic-research-agent/
-├── SKILL.md                            # 主入口（Claude Code 读这个）
+├── SKILL.md                            # Claude Code 入口
 ├── agents/openai.yaml                  # OpenAI Codex 入口
-├── references/                         # assistant 操作手册
+├── references/                         # skill 操作手册
 │   ├── workflow.md                     # 7 模块菜单
 │   ├── intake_questions.md             # 主动询问脚本（双格式）
 │   ├── search_protocol.md              # 三档检索 + 法律 PDF 政策
 │   ├── dataset_protocol.md             # 数据可行性 Pass/Weak/Fail
-│   ├── report_style.md                 # v2 风格指南 + 环境依赖
+│   ├── report_style.md                 # v2 风格 + 环境依赖
 │   ├── schemas.md                      # CSV/YAML/JSONL 模板
-│   └── evidence_rules.md               # 不可编造 + 安全新颖性
+│   └── evidence_rules.md               # 不可编造红线
 └── assets/
-    ├── report-blueprint/               # v2 最小报告骨架（MD + LaTeX）
-    ├── project-template/               # 用户项目起手目录
+    ├── report-blueprint/               # v2 最小骨架（MD + LaTeX）
+    ├── project-template/               # 用户项目目录模板
     │   ├── config/                     # topic_input / topic_lock / sources / tag_schema.example
-    │   ├── data/processed/             # CSV 输出目录
+    │   ├── data/processed/             # CSV 输出
     │   ├── reports/                    # 00-06 阶段产物
     │   ├── drafts/                     # 标题/摘要/实验设计草稿
     │   └── scripts/                    # render_report.py / workflow_checklist.py
-    └── screenshots/                    # 本 README 用的截图
+    └── screenshots/                    # 这个 README 用的截图
 ```
 
 ---
 
-## 核心原则（不可编造红线）
+## License
 
-skill 内置了一组**强制约束**，写在 `references/evidence_rules.md`：
-
-- **不编造**任何论文、引用、数据集、被试数、指标、结果、部署、研究发现
-- **不把可能的想法说成事实**——没有证据的，全部标 `Unknown` / `TODO`
-- **不声明全局新颖性**，除非检索范围确实覆盖了那个具体声明
-- **不悄悄改主题去迁就好找的数据**——发现偏离会写 `topic_drift_warning.md`
-- **不引用没核实过 access page 的数据集**
-- **不下载付费/许可受限的 PDF**
-
-这是这个 skill **跟通用 LLM 最大的区别**：不是更聪明，是**更克制**。
-
----
-
-## FAQ
-
-**Q：跟 Elicit / ResearchRabbit / Consensus 这些工具有什么不同？**
-A：那些是**文献检索工具**，给你论文列表；这个是**前期调研开发工具**，把论文列表 → 数据可行性 → 标题摘要 → 完整研究方案串成一条流水线，并输出可发导师的 PDF。它能配合 Elicit 等工具用——你把它们的输出粘进来，skill 接着做后面的事。
-
-**Q：我没装 LaTeX 怎么办？**
-A：照样能用。skill 输出 Markdown 是默认产物；LaTeX 是结构化版本，PDF 只是 LaTeX 的渲染。没 TeX 环境就只产 MD + LaTeX，等到了有 TeX 的机器再编译。
-
-**Q：能不能用英文输出？**
-A：能。在 intake 阶段把 `output_language` 设为 `English` 即可。但默认中文——`v2 风格`本身是中文学术写作风格，硬翻译效果不好。
-
-**Q：deep 模式真的能搜到 100 篇吗？**
-A：取决于主题热度。冷门方向可能 60-80 篇就到天花板，skill 会**如实说明上限**，而不是凑数。
-
-**Q：能搜中文期刊吗？**
-A：能。`config/sources.yaml` 默认启用 OpenAlex / CrossRef / DBLP / Semantic Scholar，覆盖部分中文期刊；CNKI/万方在 sources.yaml 里默认不开启，你可以自己加。
-
----
-
-## 致谢与许可
-
-- **风格灵感**：所有 v2 风格细节来自我个人多份中文研究方案的写作经验，骨架经过多轮对中文 CHI/LAK 投稿者的使用迭代。
-- **截图来源**：README 中的报告截图来自我本人的 CHI 2027 投稿方向「课中微决策与概念干预 / ProbeMate」研究方案，**作为 v2 风格的真实参考样例**。
-- **License**：MIT。欢迎二次开发、改造、做你自己学科领域的变体。
-
----
-
-<p align="center">
-  <sub>Made for researchers who want to stop wasting time on "what's already been done" and start writing what's worth doing.</sub>
-</p>
+MIT。随便用、随便改、随便做你自己学科的变体。如果你做出来的版本不错，欢迎回来告诉我。
