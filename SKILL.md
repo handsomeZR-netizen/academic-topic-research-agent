@@ -1,6 +1,6 @@
 ---
 name: academic-topic-research-agent
-description: 中文默认的学术选题前置调研开发包。Use when the user asks to develop a paper idea, research direction, title, abstract, LaTeX proposal, manuscript sketch, or CHI/LAK/L@S/HCI/AIED/EDM topic into a v2-style Chinese research-plan report — including 选题报告、开题报告、前期调研、调研开发、研究方向、学术选题, deep literature metadata collection, legal OA PDF handling, dataset/study feasibility, title polishing, abstract drafts, and Markdown/LaTeX/PDF deliverables for supervisor review.
+description: 中文默认的学术选题前置调研开发包，含 researcher-grade（CHI/CSCW 级）构念压力测试与 8 角批评-重写循环。Use when the user asks to develop a paper idea, research direction, title, abstract, LaTeX proposal, manuscript sketch, or CHI/CSCW/UIST/LAK/L@S/HCI/AIED/EDM/IJCAI/NeurIPS topic into a v2-style Chinese research-plan report — including 选题报告、开题报告、前期调研、调研开发、研究方向、学术选题、researcher-grade、深度打磨、构念压力测试、CHI 级、CSCW 转身、期刊投稿级, deep literature metadata collection, legal OA PDF handling, dataset/study feasibility, title polishing, abstract drafts, construct stress test + critique refinement loop, venue fit decision, and Markdown/LaTeX/PDF deliverables for supervisor review.
 ---
 
 # Academic Topic Research Agent
@@ -11,6 +11,19 @@ description: 中文默认的学术选题前置调研开发包。Use when the use
 - **最少要给的信息**：研究主题/核心问题；目标会议或期刊；深度偏好（quick/standard/deep）。其它信息（年份、数据类型、必含/必避关键词、时间预算、已有 PDF）assistant 会主动追问。
 - **你会拿到**：v2 风格中文调研报告（Markdown + LaTeX，本机有 TeX 时附 PDF）、3-8 个标题候选、1-3 段摘要候选、文献元数据矩阵、数据/研究可行性判定（Pass / Weak Pass / Fail）、下一步执行计划。
 - **示例触发语**：`帮我把"用 AI 辅助高中物理老师做课堂决策"这个想法做成 CHI 风格的中文 v2 调研报告，standard 深度。`
+- **想要 researcher-grade（CHI/CSCW 级）**：再加一句关键词，例如 `researcher-grade` / `深度打磨` / `构念压力测试` / `CHI 级` / `CSCW 转身` / `期刊投稿级`。`deep` 模式默认就是 researcher-grade。
+
+## Researcher-Grade Mode
+
+普通模式产出"OK 的调研方案"。Researcher-grade 模式产出"能直接进 CHI/CSCW 级讨论的方案"——它在 Modules A–E（调研+候选构造）之后，跑一段 **Module H：构念压力测试 + 8 角批评 + 重写循环 + venue fit 决策**，把候选写作阶段从"填 TODO 表格"推到"研究级构念"。
+
+| 深度 | 行为 |
+|---|---|
+| `deep` | 默认开启。Module H 自动跑 **2 轮** critique → rewrite。14 元素全做。 |
+| `standard` | 默认关。用户消息出现 `researcher-grade` / `深度打磨` / `构念压力测试` / `CHI 级` / `CSCW 转身` / `期刊投稿级` 时开启，Module H 跑 **1 轮**。14 元素做 11 项。 |
+| `quick` | 跳过 Module H，但仍强制 1 张 **Neighbor Concept Differentiation Table**（3 行上限），写到 `drafts/contribution_candidates.md`。 |
+
+Module H 检测 8 类结构性失败：headline 抢戏、构念是不是邻居概念换名、ladder 是不是偷偷压了多维、formative study 是 performance 还是 inquiry、ground-truth 是否稳定、部署成本是否被当背景隐藏、命名是否预埋答案、venue 是否人格分裂。每一角带 trigger / fail / fix，并在 ≤ 1 角失败时 early stop 避免假 critique 剧场。完整协议见 `references/construct_critique.md`；14 元素清单见 `references/researcher_grade_checklist.md`；venue 决策见 `references/venue_fit.md`（覆盖 CHI / CSCW / UIST / LAK / L@S / AIED / EDM / IJHCI / IJCAI / NeurIPS + 中文期刊代表）。
 
 ## Core Contract
 
@@ -96,10 +109,20 @@ Use modules flexibly. A deep task usually uses most modules; a quick task may us
 - Turn evidence into research questions, contribution candidates, system/method scope, user study or experiment plan, risk table, and next steps.
 - Keep model/data claims separate from user-facing or venue-facing contribution claims.
 
+### Construct Stress Test and Critique Refinement Module (Module H)
+
+- Run when researcher-grade mode is on (deep automatic; standard with keyword trigger).
+- Read `references/construct_critique.md` (8 angles), `references/researcher_grade_checklist.md` (14 elements), `references/venue_fit.md` (full venue table).
+- Produce `drafts/construct_stress_test.md`, `drafts/critique_round_<N>.md` (or `_passed.md`), `drafts/construct_rewrite_<N>.md`, `drafts/venue_fit_decision.md`.
+- 2 passes for `deep`, 1 pass for `standard` (when triggered); skipped for `quick`.
+- Pass condition: if ≤ 1 angle fails, early-stop and write `_passed.md` rather than fake-rewriting.
+- If the rewrite changes scope, update `config/topic_lock.yaml` and append to `reports/05_topic_drift_warning.md`.
+
 ### Title and Abstract Module
 
 - Generate 3-8 title candidates and 1-3 abstract variants when useful.
 - Bind strong abstract claims to evidence or clearly frame them as proposed work.
+- In researcher-grade mode, use the spine chosen in `construct_rewrite_<latest>.md` as the basis for every title candidate; fill the Headline Competition Audit table in `drafts/title_candidates.md`; fill the Construct/Differentiation/Quantified-Placeholder sentence fields in `drafts/abstract_candidates.md`.
 
 ### v2-Style Report Module
 
@@ -108,6 +131,7 @@ Use modules flexibly. A deep task usually uses most modules; a quick task may us
 - Produce `reports/final_topic_report.md` and `reports/final_topic_report.tex`.
 - Compile `reports/final_topic_report.pdf` only when a local TeX toolchain is available. See `references/report_style.md` "Environment Notes" for required components (xelatex + ctexart + CJK fonts; Pandoc optional).
 - When a verdict memo is needed in addition to the full report, write `reports/06_final_recommendation.md` — a short advisor-facing decision page ("推进 / 收窄 / 重做" + 3-5 reasons).
+- In researcher-grade mode, also integrate the 13 structural blocks from `assets/report-blueprint/v2_researcher_grade_extensions.md` (and `.tex` for LaTeX) using the integration map at the top of that file. Required elements per depth tier are listed in `references/researcher_grade_checklist.md`; missing required elements should be written as visible `TODO` lines.
 
 ## Final Output Standard
 
@@ -125,16 +149,21 @@ The final report should feel like `网页版个人调研/v2.tex`: strong core ju
 
 ## Resource Map
 
-- `references/workflow.md`: modular execution guide.
+- `references/workflow.md`: modular execution guide (includes Module H for researcher-grade mode).
 - `references/intake_questions.md`: dual-format question script for the Intake Protocol.
 - `references/search_protocol.md`: quick/standard/deep metadata and legal PDF protocol.
 - `references/dataset_protocol.md`: dataset and study feasibility checks.
 - `references/report_style.md`: v2-style Chinese report structure, writing preferences, and environment notes.
 - `references/schemas.md`: configs, metadata matrices, evidence logs, and report artifacts.
 - `references/evidence_rules.md`: claim safety and evidence labels.
+- `references/construct_critique.md`: 8-angle critique protocol for Module H, with trigger/fail/fix per angle and early-stop pass condition.
+- `references/researcher_grade_checklist.md`: 14 structural elements every researcher-grade final report must carry; tiered by depth.
+- `references/venue_fit.md`: full venue decision tables for CHI / CSCW / UIST / LAK / L@S / AIED / EDM / IJHCI / IJCAI / NeurIPS plus Chinese journals; templates for `drafts/venue_fit_decision.md`.
 - `assets/report-blueprint/`: copyable v2-style minimal Markdown/LaTeX report skeleton.
+- `assets/report-blueprint/v2_researcher_grade_extensions.md` and `.tex`: 13 additive blocks appended to the v2 report when researcher-grade mode is on (opening thesis box, headline audit, reverse pitch, 3D operationalization, archetype table, neighbor differentiation, venue strategy, RQ matrix, alternative outcomes, deployment cost, reviewer attack, demand audit, elevator pitch); LaTeX includes tcolorbox macros (thesisbox/bluebox/redbox/greenbox).
 - `assets/project-template/`: starter project structure.
 - `assets/project-template/config/sources.yaml`: per-source on/off list — respect this when searching.
 - `assets/project-template/config/tag_schema.example.yaml`: illustrative T-tag set; copy to `tag_schema.yaml` and customize before use.
+- `assets/project-template/drafts/construct_stress_test.md`, `critique_round_{1,2}.md`, `construct_rewrite_{1,2}.md`, `venue_fit_decision.md`: Module H draft templates.
 - `assets/project-template/scripts/render_report.py`: render Markdown to styled LaTeX/PDF.
 - `assets/project-template/scripts/workflow_checklist.py`: inspect recommended artifacts by module (`python ... --list`).

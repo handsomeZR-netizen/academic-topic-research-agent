@@ -40,7 +40,8 @@
 \tcbset{
   mybox/.style={colback=lightblue,colframe=mainblue,arc=2mm,boxrule=0.8pt,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm},
   keybox/.style={colback=softgreen,colframe=green!50!black,arc=2mm,boxrule=0.8pt,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm},
-  warnbox/.style={colback=orange!8,colframe=accentorange,arc=2mm,boxrule=0.8pt,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm}
+  warnbox/.style={colback=orange!8,colframe=accentorange,arc=2mm,boxrule=0.8pt,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm},
+  thesisbox/.style={colback=black!3,colframe=black!70,arc=2mm,boxrule=0.6pt,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm}
 }
 
 \title{\vspace{-1.5cm}\textbf{选题前置调研报告}\\[0.5em]\large TODO：项目副标题或英文标题}
@@ -49,6 +50,16 @@
 
 \begin{document}
 \maketitle
+
+% Opening Thesis Box — researcher-grade 模式必填；其它模式可选。
+% 来源：drafts/construct_rewrite_<latest>.md 第 1 节。
+\begin{tcolorbox}[thesisbox,title=核心构念决定]
+TODO：3--6 句话，说明 \emph{核心构念决定}（不是项目主题）。
+
+例如："这版的核心决定：不再把 X 写成 [obvious framing]. 真正的构念不是 [obvious thing], 而是 [sharpened claim]. 因此本文把 \textit{[construct]} 定义为 [precise scope]: \textbf{[dim 1]}, \textbf{[dim 2]}, \textbf{[dim 3]}. \textbf{[Named levels]} 只是这个空间中的常见 archetype, 不是真值类别, 不是一维序列, 也不是专家必须一致标注的类别."
+
+非 researcher-grade 模式可以省略本框；researcher-grade 模式必填。
+\end{tcolorbox}
 
 \begin{tcolorbox}[mybox,title=一句话概括]
 TODO：用 2--4 句话说明项目到底研究什么、不是研究什么、为什么现在值得做、目前可行性是 Pass / Weak Pass / Fail。

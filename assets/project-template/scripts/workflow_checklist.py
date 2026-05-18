@@ -43,14 +43,26 @@ MODULES: dict[str, Module] = {
         "Develop research questions, contribution package, and evaluation plan.",
         ("drafts/contribution_candidates.md", "drafts/experiment_plan.md"),
     ),
+    "construct-stress-test": Module(
+        "construct-stress-test",
+        "Module H (researcher-grade): stress-test construct, run 8-angle critique, rewrite, choose venue. Runs 2 passes on deep, 1 on standard with trigger keyword, skipped on quick.",
+        (
+            "drafts/construct_stress_test.md",
+            "drafts/critique_round_1.md",
+            "drafts/construct_rewrite_1.md",
+            "drafts/critique_round_2.md",
+            "drafts/construct_rewrite_2.md",
+            "drafts/venue_fit_decision.md",
+        ),
+    ),
     "title-abstract": Module(
         "title-abstract",
-        "Create title candidates and evidence-bound abstract variants.",
+        "Create title candidates and evidence-bound abstract variants. Researcher-grade mode requires Headline Competition Audit + Demand Characteristic Risk + Construct/Differentiation/Quantified Placeholder sentence fields.",
         ("drafts/title_candidates.md", "drafts/abstract_candidates.md"),
     ),
     "report": Module(
         "report",
-        "Render the v2-style Markdown, LaTeX, and optional PDF reports.",
+        "Render the v2-style Markdown, LaTeX, and optional PDF reports. Researcher-grade mode appends the 13 blocks from assets/report-blueprint/v2_researcher_grade_extensions.{md,tex}.",
         ("reports/final_topic_report.md", "reports/final_topic_report.tex", "reports/final_topic_report.pdf"),
     ),
 }

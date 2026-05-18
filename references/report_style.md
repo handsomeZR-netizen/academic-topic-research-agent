@@ -108,3 +108,28 @@ For standard/deep reports, include:
 
 For quick reports, keep the same argumentative pattern but shorten the evidence layer.
 
+## Researcher-Grade Density Standard
+
+When researcher-grade mode is on (deep automatic; standard with trigger keyword), the report must additionally include structural elements from `references/researcher_grade_checklist.md`. Use the integration map in `assets/report-blueprint/v2_researcher_grade_extensions.md` to know where each goes in the v2 skeleton.
+
+| 14-element checklist item | `quick` | `standard` (no trigger) | `standard` (triggered) | `deep` |
+|---|:---:|:---:|:---:|:---:|
+| 1. Opening Thesis Box | — | required | required | required |
+| 2. Headline Competition Audit | — | — | required | required |
+| 3. Reverse Pitch ("It Is Not") | — | — | required | required |
+| 4. 3D Construct Operationalization | — | required | required | required |
+| 5. Archetype Table | — | — | required | required |
+| 6. Neighbor Concept Differentiation Table | **required (3 rows)** | required (5+ rows) | required (5+ rows) | required (5+ rows) |
+| 7. Venue Strategy Table | — | — | required | required |
+| 8. RQ Matrix (rows=RQ, cols=study/measure/evidence/fail) | — | required | required | required |
+| 9. Study 1 Alternative Outcomes Table | — | required | required | required |
+| 10. Ground-Truth Stability Check | — | — | required | required |
+| 11. Deployment Cost as Finding + Two Scale Tiers | — | — | optional | required |
+| 12. Reviewer Attack Table (5+ rows) | — | — | required | required |
+| 13. Demand Characteristic Audit | — | — | required (compact) | required (full) |
+| 14. Elevator Pitch Box | — | required | required | required |
+
+If a required element cannot be filled because of insufficient evidence at report time, write a visible `TODO` line in the final report rather than silently omitting it. A `TODO` is reviewable; a missing element is not.
+
+The reference deliverable is `ProbeMate_CalibratedDiagnosticCommitment_CHI_CSCW_rewrite.tex` (kept under `D:/desktop/test-skill/.claude/skills/` for users who have it). Every element in the table above has a concrete passage anchor in that file; if you are unsure what an element looks like in practice, read the corresponding section there.
+

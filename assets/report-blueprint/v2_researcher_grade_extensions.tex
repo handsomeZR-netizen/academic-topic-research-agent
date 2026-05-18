@@ -1,0 +1,353 @@
+% =====================================================================
+% v2 Researcher-Grade Extensions for ctexart / v2_minimal_report.tex
+%
+% Copy the relevant blocks into the main v2 report .tex when researcher-
+% grade mode is on. The preamble macros below should be appended to the
+% main report preamble (after the existing tcolorbox load) so the four
+% colored boxes are available.
+%
+% Reference style: ProbeMate_CalibratedDiagnosticCommitment_CHI_CSCW_rewrite.tex
+% =====================================================================
+
+% --- PREAMBLE ADDITIONS ----------------------------------------------
+% Add to v2_minimal_report.tex preamble if not already present:
+%
+%   \usepackage[most]{tcolorbox}
+%   \usepackage{tabularx}
+%   \usepackage{longtable}
+%   \usepackage{booktabs}
+%   \usepackage{array}
+%   \usepackage{amsmath, amssymb}
+%
+% Then add the four colored box environments below.
+
+\newtcolorbox{thesisbox}{
+  colback=black!3,
+  colframe=black!70,
+  boxrule=0.6pt,
+  arc=1.5mm,
+  left=1.1em,
+  right=1.1em,
+  top=0.75em,
+  bottom=0.75em
+}
+
+\newtcolorbox{bluebox}{
+  colback=blue!4,
+  colframe=blue!55!black,
+  boxrule=0.5pt,
+  arc=1.5mm,
+  left=1.0em,
+  right=1.0em,
+  top=0.65em,
+  bottom=0.65em
+}
+
+\newtcolorbox{redbox}{
+  colback=red!3,
+  colframe=red!60!black,
+  boxrule=0.5pt,
+  arc=1.5mm,
+  left=1.0em,
+  right=1.0em,
+  top=0.65em,
+  bottom=0.65em
+}
+
+\newtcolorbox{greenbox}{
+  colback=green!4,
+  colframe=green!45!black,
+  boxrule=0.5pt,
+  arc=1.5mm,
+  left=1.0em,
+  right=1.0em,
+  top=0.65em,
+  bottom=0.65em
+}
+
+% --- BODY BLOCKS (copy to body where indicated by integration map) ----
+
+% =====================================================================
+% Block 1 — Opening Thesis Box (insert before \section{一句话概括})
+% =====================================================================
+
+\begin{thesisbox}
+\textbf{这版的核心决定：}TODO（3--6 句话，说明 \emph{核心构念决定}，不是项目主题）。
+真正的构念不是 TODO，而是 TODO。因此本文把 \textit{[construct]} 定义为
+TODO：\textbf{[dim 1]}、\textbf{[dim 2]}、\textbf{[dim 3]}。
+\textbf{[Named levels]} 只是这个空间中的常见 archetype，不是真值类别、不是一维序列，
+也不是专家必须一致标注的类别。
+\end{thesisbox}
+
+% =====================================================================
+% Block 2 — Headline Competition Audit (subsection of 项目核心判断)
+% =====================================================================
+
+\subsection{标题候选与抢戏审计}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.22\textwidth}X X}
+\toprule
+候选 headline & 一句话内容 & 为什么不选作 spine \\
+\midrule
+TODO & TODO & TODO \\
+TODO & TODO & TODO \\
+\textbf{[Selected]} & TODO & \textbf{入选：TODO} \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% =====================================================================
+% Block 3 — Reverse Pitch (subsection of 核心问题不是)
+% =====================================================================
+
+\begin{quote}
+本项目不是 TODO（misreading 1）；不是 TODO（misreading 2）；不是 TODO（misreading 3）。
+它研究的是 TODO（precise object）。
+\end{quote}
+
+% =====================================================================
+% Block 4 — 3D Construct Operationalization
+% =====================================================================
+
+\subsection{构念定义与操作化}
+
+\begin{thesisbox}
+\textbf{Definition.} \textit{[Construct name]} refers to the design problem of TODO.
+\end{thesisbox}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.19\textwidth}p{0.16\textwidth}p{0.14\textwidth}p{0.14\textwidth}X}
+\toprule
+维度 & 0 & 1 & 2 & 3 \\
+\midrule
+Dim A\newline TODO & TODO & TODO & TODO & TODO \\
+Dim B\newline TODO & TODO & TODO & TODO & TODO \\
+Dim C\newline TODO & TODO & TODO & TODO & TODO \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+形式化地：
+\[
+K_t = (A_t, B_t, C_t)
+\]
+其中 $A_t$ 是 TODO，$B_t$ 是 TODO，$C_t$ 是 TODO。
+
+% =====================================================================
+% Block 5 — Archetype Table
+% =====================================================================
+
+\subsection{常见 archetype}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.16\textwidth}p{0.20\textwidth}p{0.24\textwidth}X}
+\toprule
+Archetype & Vector & 界面/系统形态 & 适用情境 \\
+\midrule
+TODO & $(0, 0, 0)$ & TODO & TODO \\
+TODO & $(1, 2, 1)$ & TODO & TODO \\
+TODO & $(2, 2, 2)$ & TODO & TODO \\
+TODO & $(3, 3, 3)$ & TODO & TODO \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{注意：}archetype 不是一维 ladder，也不是 ground-truth class。它是 design space
+中常见落点的命名。
+
+% =====================================================================
+% Block 6 — Neighbor Concept Differentiation Table
+% =====================================================================
+
+\subsection{与邻居概念的区分}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.24\textwidth}X X}
+\toprule
+邻居概念 & 它主要解释什么 & 本构念的不同点 \\
+\midrule
+Model confidence & TODO & TODO \\
+Selective prediction / abstention & TODO & TODO \\
+Mixed-initiative interaction & TODO & TODO \\
+Proactive vs reactive AI & TODO & TODO \\
+Progressive disclosure & TODO & TODO \\
+Appropriate reliance & TODO & TODO \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+具体差异化举例：本构念能描述 TODO（specific configuration），而 [neighbor X] 不能。
+
+% =====================================================================
+% Block 7 — Venue Strategy Table
+% =====================================================================
+
+\subsection{投稿策略}
+
+\begin{bluebox}
+\textbf{建议：}以 \textbf{TODO (primary venue)} 为主路线，但从第一天开始让数据也能支撑 \textbf{TODO (pivot venue)}。
+TODO（pivot 触发条件）。
+\end{bluebox}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.18\textwidth}X X}
+\toprule
+路线 & 主贡献写法 & 研究重心 \\
+\midrule
+TODO (Primary) & TODO & TODO \\
+TODO (Pivot) & TODO & TODO \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% =====================================================================
+% Block 8 — RQ Matrix
+% =====================================================================
+
+\subsection{研究问题矩阵}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.06\textwidth}X p{0.12\textwidth} p{0.16\textwidth} p{0.18\textwidth} p{0.16\textwidth}}
+\toprule
+RQ & 研究问题 & Study & 主要 measure & 证据目标 & Fail condition \\
+\midrule
+RQ1 & TODO & Study 1 & TODO & TODO & TODO \\
+RQ2 & TODO & Study 2 & TODO & TODO & TODO \\
+RQ3 & TODO & Study 3 & TODO & TODO & TODO \\
+RQ4 & TODO & Study 4 & TODO & TODO & TODO \\
+RQ5 & TODO & Study 4 & TODO & TODO & TODO \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% =====================================================================
+% Block 9 — Alternative Outcomes Tables (Study 1)
+% =====================================================================
+
+\subsection{Study 1：形成性研究的可能发现}
+
+不写"预期发现"，写"可能推翻或重塑设计的发现"：
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.24\textwidth}X X}
+\toprule
+可能发现 & 它如何推翻/重塑原设计 & 设计后果 \\
+\midrule
+TODO (strong-form "design is wrong") & TODO & TODO \\
+TODO (different-population finding) & TODO & TODO \\
+TODO (novice vs expert inversion) & TODO & TODO \\
+TODO (cost-too-high finding) & TODO & TODO \\
+TODO ($\geq$ 5 rows for deep; $\geq$ 3 for standard) & TODO & TODO \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% =====================================================================
+% Block 10 — Deployment Cost as Finding + Two Scale Tiers
+% =====================================================================
+
+\subsection{部署的代价与两档规模}
+
+\begin{redbox}
+\textbf{必须承认：}TODO（deployment mechanism）不是免费的。每次 TODO（unit of cost）
+需要 TODO 时间/工作量/设备。一节 TODO 分钟课做 TODO 次，占据约 TODO\% 的课堂/工作时间。
+这不是"无缝叠加"，而是"有意插入的诊断节奏"——本身就是研究发现。
+\end{redbox}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.26\textwidth}X}
+\toprule
+Trade-off & 研究意义 \\
+\midrule
+TODO & TODO \\
+TODO & TODO \\
+TODO & TODO \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsubsection*{两档可行规模}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.18\textwidth}X X}
+\toprule
+方案 & 规模 & 适合路线 \\
+\midrule
+TODO ([primary]-强评估) & TODO & TODO \\
+TODO ([pivot]-厚描) & TODO & TODO \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% =====================================================================
+% Block 11 — Reviewer Attack Table
+% =====================================================================
+
+\section{预期审稿人攻击与预防}
+
+\begin{center}
+\small
+\begin{longtable}{>{\bfseries}p{0.24\textwidth}p{0.36\textwidth}p{0.32\textwidth}}
+\toprule
+攻击点 & 审稿人可能怎么说 & 论文里如何预防 \\
+\midrule
+\endhead
+Construct = old idea renamed & TODO & 见 §[neighbor differentiation] \\
+Levels not really 1D & TODO & 见 §[archetype framing] \\
+Formative 倒推 & TODO & 见 §[alternative outcomes] \\
+Ground-truth instability & TODO & 见 §[pairwise preference + disagreement] \\
+Deployment cost hidden & TODO & 见 §[cost as finding] \\
+Demand characteristic & TODO & 见 §[naming audit] \\
+Generalization beyond testbed & TODO & 见 §[scope statement] \\
+TODO ($\geq$ 5 rows for deep) & TODO & TODO \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+% =====================================================================
+% Block 12 — Demand Characteristic Audit
+% =====================================================================
+
+\subsection{命名与提示的预埋审计}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{>{\bfseries}p{0.16\textwidth}p{0.20\textwidth}p{0.20\textwidth}p{0.10\textwidth}X}
+\toprule
+Surface & Current wording & Embedded answer & Risk & Fix \\
+\midrule
+System name & TODO & TODO & TODO & TODO \\
+Condition labels & TODO & TODO & TODO & TODO \\
+Main RQ wording & TODO & TODO & TODO & TODO \\
+Interview prompts & TODO & TODO & TODO & TODO \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% =====================================================================
+% Block 13 — Elevator Pitch Box
+% =====================================================================
+
+\section{一段话电梯演讲}
+
+\begin{thesisbox}
+本项目不再把重点放在 TODO（obvious framing），而是研究一个更基础的 TODO（field）问题：
+TODO（sharpened question）。
+
+在 TODO（real setting）, TODO（phenomenon explanation）。
+因此 TODO（system / method）不能 TODO（naive goal）, 而要 TODO（precise goal）。
+我把这个问题命名为 \textit{[construct]}。
+
+通过 TODO（testbed）, 我会先 TODO（Study 1）, 再 TODO（Study 2/3）, 最后 TODO（Study 4）。
+本论文的贡献不是 TODO（naive thing）, 而是 TODO（precise contribution）。
+\end{thesisbox}

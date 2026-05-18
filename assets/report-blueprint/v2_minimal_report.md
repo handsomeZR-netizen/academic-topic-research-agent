@@ -1,5 +1,13 @@
 # 选题前置调研报告
 
+> **核心构念决定 (researcher-grade 模式必填；其它模式可选)**
+>
+> TODO：3–6 句话，说明 *核心构念决定*（不是项目主题）。例如：
+>
+> > 这版的核心决定：不再把 X 写成 [obvious framing]. 真正的构念不是 [obvious thing], 而是 [sharpened claim]. 因此本文把 [construct] 定义为 [precise scope]: [dim 1], [dim 2], [dim 3]. [Named levels] 只是这个空间中的常见 archetype, 不是真值类别, 不是一维序列, 也不是专家必须一致标注的类别.
+>
+> 来源：`drafts/construct_rewrite_<latest>.md` 第 1 节。
+
 ## 一句话概括
 
 > 用 2-4 句话说明：这个项目到底研究什么、不是研究什么、为什么现在值得做、目前可行性是 Pass / Weak Pass / Fail。

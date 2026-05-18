@@ -1,7 +1,7 @@
 interface:
   display_name: "Academic Topic Research Agent"
-  short_description: "中文默认的学术选题前置调研开发包：三档文献元数据、v2 风格 Markdown/LaTeX/PDF 报告、标题/摘要候选、数据可行性 (Pass/Weak Pass/Fail)。触发词：选题报告、开题报告、前期调研、调研开发、研究方向、学术选题。"
-  default_prompt: "Use $academic-topic-research-agent to develop my research idea into a Chinese v2-style pre-research package. First ask me for any missing core fields (主题 / 目标 venue / 深度 / 数据类型), then run literature metadata at the chosen depth, check dataset/study feasibility, polish titles and abstracts, and produce Markdown/LaTeX/PDF report artifacts."
+  short_description: "中文默认的学术选题前置调研开发包：三档文献元数据、v2 风格 Markdown/LaTeX/PDF 报告、标题/摘要候选、数据可行性 (Pass/Weak Pass/Fail)，含 researcher-grade（CHI/CSCW 级）构念压力测试 + 8 角批评-重写循环 + venue fit 决策。触发词：选题报告、开题报告、前期调研、调研开发、研究方向、学术选题、researcher-grade、深度打磨、构念压力测试、CHI 级、CSCW 转身、期刊投稿级。"
+  default_prompt: "Use $academic-topic-research-agent to develop my research idea into a Chinese v2-style pre-research package. First ask me for any missing core fields (主题 / 目标 venue / 深度 / 数据类型), then run literature metadata at the chosen depth, check dataset/study feasibility, polish titles and abstracts, and produce Markdown/LaTeX/PDF report artifacts. For researcher-grade mode (auto-on for deep depth; keyword-triggered for standard via 'researcher-grade' / '深度打磨' / '构念压力测试' / 'CHI 级' / 'CSCW 转身' / '期刊投稿级'), also run Module H: construct stress test, 8-angle critique loop, construct rewrite (2 passes for deep, 1 for standard), and venue fit decision; produce the 14-element researcher-grade structural elements in the final report."
 
 policy:
   allow_implicit_invocation: true
