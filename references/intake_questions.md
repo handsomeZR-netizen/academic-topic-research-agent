@@ -4,10 +4,13 @@ Use this script when the user's opening message does not cover at least three of
 
 This file gives the assistant two formats. Pick by runtime:
 
-- **Format A: Markdown numbered list** — works on every platform (Claude Code, OpenAI Codex, web chat, plain CLI). Default choice unless you know the platform supports rich interactive prompts.
-- **Format B: `AskUserQuestion` tool JSON** — Claude Code only. Use when the `AskUserQuestion` tool is available; it gives the user a card-style selector. Fall back to Format A on any other platform.
+- **Format A: Markdown numbered list** — works on every platform (web chat, plain CLI, any runtime without a native question tool). Use as fallback only.
+- **Format B: Native question card** — use the runtime's built-in card UI:
+  - Claude Code → `AskUserQuestion` tool
+  - OpenAI Codex (v0.119.0+) → `ask_user_question` tool
+  - Both render card-style selectors with single/multi-select, "Other" option, and structured JSON answers. The JSON schema in Format B works on both — only the tool name differs.
 
-Detect the runtime once. If unsure, prefer Format A.
+Detect the runtime once. **Prefer Format B whenever a native card tool is available**; fall back to Format A only when no native question tool exists.
 
 ---
 
@@ -44,9 +47,9 @@ Send a single message that opens with one short framing line, then a numbered li
 
 ---
 
-## Format B — `AskUserQuestion` JSON (Claude Code only)
+## Format B — Native Question Card JSON (Claude Code & Codex v0.119.0+)
 
-Use the `AskUserQuestion` tool. Send **one call** containing 3-4 questions covering the core fields. Use the `header` field for chip labels and provide concrete option labels with short descriptions.
+Use the platform's native question tool: `AskUserQuestion` on Claude Code, `ask_user_question` on Codex (v0.119.0+). **The JSON schema below works for both — only the tool name differs.** Send **one call** containing 3-4 questions covering the core fields. Use the `header` field for chip labels and provide concrete option labels with short descriptions.
 
 ### Template
 
@@ -103,6 +106,10 @@ If `multiSelect: true` is used (Venue / 数据类型), make this explicit in any
 ### Required fields covered
 
 This 4-question set covers 深度 + venue + 数据类型 + 已有材料. The user's free-text "主题是什么" is captured separately — either inferred from the prior message, or asked as a single follow-up free-text question after the JSON above.
+
+### Codex 自动触发提示
+
+如果运行时是 OpenAI Codex 而 `ask_user_question` 没自动启动，在响应顶端加触发短语 `double-check preferences before searching` 或 `clarify first` 即可主动激活卡片 UI。Codex 单次会话约 4-6 题上限，本协议 4 题 intake 在限内。
 
 ---
 
