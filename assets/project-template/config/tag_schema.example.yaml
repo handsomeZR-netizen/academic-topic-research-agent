@@ -1,0 +1,32 @@
+# 仅为示例（ProbeMate 教师端 AI 概念诊断·决策支持研究）。
+# 这里的 T1-T5 标签只适用于该特定主题，不能直接用于其他课题。
+# 使用方法：复制本文件为 config/tag_schema.yaml，然后把下面所有 T1-T5 的
+# id / label / include_keywords / exclude_keywords / notes 全部替换成你自己
+# 课题的标签后再开始批量编码。core_combination 也要按你的研究核心维度重写。
+tags:
+  - id: "T1"
+    label: "teacher-facing"
+    include_keywords: ["teacher", "educator", "instructor", "classroom"]
+    exclude_keywords: []
+    notes: "Tools or workflows designed for teachers or instructors."
+  - id: "T2"
+    label: "concept diagnosis"
+    include_keywords: ["concept diagnosis", "misconception", "conceptual understanding", "formative assessment"]
+    exclude_keywords: []
+    notes: "Detection or interpretation of learner conceptual state."
+  - id: "T3"
+    label: "decision support"
+    include_keywords: ["decision support", "recommendation", "suggestion", "intervention"]
+    exclude_keywords: []
+    notes: "Supports human decisions rather than replacing the human."
+  - id: "T4"
+    label: "trust calibration"
+    include_keywords: ["trust", "reliance", "overreliance", "calibration"]
+    exclude_keywords: []
+    notes: "Helps users judge AI suggestions appropriately."
+  - id: "T5"
+    label: "low-interruption interaction"
+    include_keywords: ["low interruption", "glanceable", "ambient", "in the flow", "real-time"]
+    exclude_keywords: []
+    notes: "Minimizes disruption during the target activity."
+core_combination: ["T1", "T2", "T3", "T4", "T5"]

@@ -1,0 +1,30 @@
+sources:
+  semantic_scholar:
+    enabled: true
+    notes: "Use official API or stable result pages when available."
+  openalex:
+    enabled: true
+    notes: "Use for broad scholarly metadata and citation context."
+  crossref:
+    enabled: true
+    notes: "Use for DOI and bibliographic metadata."
+  dblp:
+    enabled: true
+    notes: "Use for computer science venue metadata."
+  arxiv:
+    enabled: true
+    notes: "Use for preprints and legally available PDFs."
+  acm_dl:
+    enabled: true
+    notes: "Use for CHI, CSCW, UIST, L@S, and other ACM venues."
+  ieee_xplore:
+    enabled: true
+    notes: "Use for engineering and education technology papers when accessible."
+  official_venue_pages:
+    enabled: true
+    notes: "Use accepted-paper lists, proceedings pages, and calls for papers."
+  dataset_repositories:
+    enabled: true
+    notes: "Use official dataset pages, benchmark pages, GitHub repos, Zenodo, Hugging Face, Kaggle, OSF, ICPSR, and institutional repositories."
+legal_pdf_policy: "Download only legally available OA PDFs."
+

@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.venv/
+venv/
+
+# LaTeX 编译中间产物（注意：不要忽略源 .tex 模板）
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# 编译出来的 PDF（模板里的 .pdf.todo 是占位说明，单独保留）
+assets/project-template/reports/final_topic_report.pdf
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 临时 / 个人文件
+_pdf_preview.txt
+*.tmp

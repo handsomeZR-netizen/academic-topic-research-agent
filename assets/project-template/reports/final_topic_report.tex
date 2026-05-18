@@ -1,0 +1,502 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+
+\usepackage[a4paper,margin=2.4cm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{float}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newcounter{none}
+
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric,fit,calc}
+
+\definecolor{mainblue}{RGB}{28,90,160}
+\definecolor{lightblue}{RGB}{235,244,255}
+\definecolor{darkgray}{RGB}{70,70,70}
+\definecolor{lightgray}{RGB}{245,245,245}
+\definecolor{accentorange}{RGB}{230,120,40}
+\definecolor{softgreen}{RGB}{235,250,240}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=mainblue,
+  urlcolor=mainblue,
+  citecolor=mainblue
+}
+
+\titleformat{\section}
+  {\Large\bfseries\color{mainblue}}
+  {\thesection}{0.8em}{}
+
+\titleformat{\subsection}
+  {\large\bfseries\color{darkgray}}
+  {\thesubsection}{0.8em}{}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{darkgray}}
+  {\thesubsubsection}{0.8em}{}
+
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\lhead{选题前置调研}
+\rhead{研究方案报告}
+\cfoot{\thepage}
+
+\tcbset{
+  mybox/.style={
+    colback=lightblue,
+    colframe=mainblue,
+    arc=2mm,
+    boxrule=0.8pt,
+    left=2mm,
+    right=2mm,
+    top=1.5mm,
+    bottom=1.5mm
+  },
+  keybox/.style={
+    colback=softgreen,
+    colframe=green!50!black,
+    arc=2mm,
+    boxrule=0.8pt,
+    left=2mm,
+    right=2mm,
+    top=1.5mm,
+    bottom=1.5mm
+  },
+  warnbox/.style={
+    colback=orange!8,
+    colframe=accentorange,
+    arc=2mm,
+    boxrule=0.8pt,
+    left=2mm,
+    right=2mm,
+    top=1.5mm,
+    bottom=1.5mm
+  }
+}
+
+\title{
+  \vspace{-1.5cm}
+  \textbf{选题前置调研报告}\\[0.5em]
+  \large TODO：项目副标题或英文标题
+}
+
+\author{TODO}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{tcolorbox}[mybox,title=一句话概括]
+TODO：用 2--4 句话概括项目的真正研究对象、目标用户、核心场景、预期贡献和最重要的可行性判断。
+\end{tcolorbox}
+
+\vspace{0.5em}
+
+\begin{center}
+\textbf{目标投稿方向：TODO}\\
+\textbf{关键词：TODO}
+\end{center}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{项目核心判断}
+
+\subsection{核心问题不是 TODO}
+
+TODO。
+
+\subsection{真正值得研究的问题}
+
+\begin{tcolorbox}[keybox,title=本项目的核心研究问题]
+TODO。
+\end{tcolorbox}
+
+\subsection{为什么这个问题重要}
+
+\begin{itemize}[leftmargin=2em]
+  \item TODO。
+  \item TODO。
+  \item TODO。
+\end{itemize}
+
+\subsection{本项目定位}
+
+\begin{table}[H]
+\centering
+\caption{本项目定位}
+\begin{tabularx}{\textwidth}{p{3cm}X}
+\toprule
+\textbf{维度} & \textbf{定位} \\
+\midrule
+不是 & TODO \\
+\midrule
+是 & TODO \\
+\midrule
+核心输入 & TODO \\
+\midrule
+核心输出 & TODO \\
+\midrule
+核心价值 & TODO \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{为什么适合目标会议或期刊}
+
+\subsection{目标 venue 的关注点}
+
+TODO。
+
+\subsection{与最接近工作的差异}
+
+\begin{table}[H]
+\centering
+\caption{与既有工作的差异}
+\begin{tabularx}{\textwidth}{p{3.2cm}p{4cm}X}
+\toprule
+\textbf{维度} & \textbf{既有工作} & \textbf{本项目} \\
+\midrule
+场景 & TODO & TODO \\
+\midrule
+用户任务 & TODO & TODO \\
+\midrule
+系统角色 & TODO & TODO \\
+\midrule
+输出形式 & TODO & TODO \\
+\midrule
+研究焦点 & TODO & TODO \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{可能贡献}
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{经验贡献：} TODO。
+  \item \textbf{概念贡献：} TODO。
+  \item \textbf{系统/方法贡献：} TODO。
+  \item \textbf{评估贡献：} TODO。
+\end{enumerate}
+
+\section{核心概念与研究问题}
+
+\subsection{核心概念定义}
+
+TODO。
+
+\subsection{形式化表达或分析框架}
+
+TODO。
+
+\subsection{研究问题}
+
+\begin{table}[H]
+\centering
+\caption{研究问题}
+\begin{tabularx}{\textwidth}{p{2cm}X}
+\toprule
+\textbf{编号} & \textbf{研究问题} \\
+\midrule
+RQ1 & TODO \\
+\midrule
+RQ2 & TODO \\
+\midrule
+RQ3 & TODO \\
+\midrule
+RQ4 & TODO \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{输入模态、数据模态或研究对象边界}
+
+\subsection{为什么必须先界定边界}
+
+TODO。
+
+\subsection{可选模态或数据来源}
+
+\begin{table}[H]
+\centering
+\caption{可选模态或数据来源对比}
+\begin{tabularx}{\textwidth}{p{3cm}XX}
+\toprule
+\textbf{方案} & \textbf{优点} & \textbf{局限} \\
+\midrule
+TODO & TODO & TODO \\
+\midrule
+TODO & TODO & TODO \\
+\midrule
+TODO & TODO & TODO \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{本项目建议边界}
+
+\begin{tcolorbox}[warnbox,title=需要对审稿人明确的边界]
+TODO。
+\end{tcolorbox}
+
+\section{系统方案或方法方案}
+
+\subsection{系统/方法目标}
+
+TODO。
+
+\subsection{输入与输出}
+
+\begin{table}[H]
+\centering
+\caption{输入与输出}
+\begin{tabularx}{\textwidth}{p{3cm}X}
+\toprule
+\textbf{类别} & \textbf{内容} \\
+\midrule
+输入 & TODO \\
+\midrule
+输出 & TODO \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{工作流}
+
+\begin{enumerate}[leftmargin=2em]
+  \item TODO。
+  \item TODO。
+  \item TODO。
+  \item TODO。
+\end{enumerate}
+
+\section{交互/方法设计原则}
+
+\begin{table}[H]
+\centering
+\caption{设计原则}
+\begin{tabularx}{\textwidth}{p{3cm}p{4cm}X}
+\toprule
+\textbf{原则} & \textbf{含义} & \textbf{设计落实} \\
+\midrule
+低打断 / 低负担 & TODO & TODO \\
+\midrule
+用户主导 & TODO & TODO \\
+\midrule
+可解释或可追溯 & TODO & TODO \\
+\midrule
+低置信度退让 & TODO & TODO \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{算法与数据的最小可行方案}
+
+\subsection{技术路线}
+
+TODO。
+
+\subsection{数据集候选}
+
+\begin{longtable}{p{3cm}p{4cm}p{4cm}p{3cm}}
+\caption{数据集候选与可行性} \\
+\toprule
+\textbf{数据集} & \textbf{可支持内容} & \textbf{不能支持内容} & \textbf{风险} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{数据集} & \textbf{可支持内容} & \textbf{不能支持内容} & \textbf{风险} \\
+\midrule
+\endhead
+TODO & TODO & TODO & TODO \\
+\bottomrule
+\end{longtable}
+
+\subsection{质量检查}
+
+\begin{itemize}[leftmargin=2em]
+  \item TODO。
+  \item TODO。
+  \item TODO。
+\end{itemize}
+
+\section{典型案例或使用场景}
+
+\subsection{案例一：TODO}
+
+\begin{tcolorbox}[mybox,title=Demo Case 1]
+\textbf{场景输入：} TODO\\[0.3em]
+\textbf{系统/方法判断：} TODO\\[0.3em]
+\textbf{推荐输出：} TODO\\[0.3em]
+\textbf{评价信号：} TODO\\[0.3em]
+\textbf{局限：} TODO
+\end{tcolorbox}
+
+\subsection{案例二：TODO}
+
+TODO。
+
+\section{研究问题与评价方案}
+
+\subsection{评价整体设计}
+
+TODO。
+
+\begin{table}[H]
+\centering
+\caption{评价路线}
+\begin{tabularx}{\textwidth}{p{2.8cm}p{3.5cm}p{3.8cm}X}
+\toprule
+\textbf{阶段} & \textbf{目标} & \textbf{方法} & \textbf{产出} \\
+\midrule
+Study 1 & TODO & TODO & TODO \\
+\midrule
+Study 2 & TODO & TODO & TODO \\
+\midrule
+Study 3 & TODO & TODO & TODO \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{指标}
+
+\begin{table}[H]
+\centering
+\caption{评价指标}
+\begin{tabularx}{\textwidth}{p{4cm}X}
+\toprule
+\textbf{指标类别} & \textbf{具体指标} \\
+\midrule
+质量 & TODO \\
+\midrule
+效率 & TODO \\
+\midrule
+负担 & TODO \\
+\midrule
+信任/采纳 & TODO \\
+\midrule
+结果 & TODO \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{数据集支持与可行性判断}
+
+\begin{tcolorbox}[keybox,title=可行性结论]
+\textbf{Verdict：} TODO：Pass / Weak Pass / Fail。
+\end{tcolorbox}
+
+TODO。
+
+\section{标题润色方案与摘要}
+
+\subsection{推荐标题}
+
+\begin{enumerate}[leftmargin=2em]
+  \item TODO。
+  \item TODO。
+  \item TODO。
+\end{enumerate}
+
+\subsection{推荐摘要}
+
+TODO。
+
+\section{预期论文结构}
+
+\begin{enumerate}[leftmargin=2em]
+  \item Introduction
+  \item Related Work
+  \item Formative Study / Problem Analysis
+  \item Conceptual Framework
+  \item System / Method Design
+  \item Evaluation
+  \item Findings
+  \item Discussion
+  \item Limitations and Future Work
+  \item Conclusion
+\end{enumerate}
+
+\section{投稿定位}
+
+\begin{table}[H]
+\centering
+\caption{投稿目标对比}
+\begin{tabularx}{\textwidth}{p{3cm}XX}
+\toprule
+\textbf{目标} & \textbf{优势} & \textbf{风险} \\
+\midrule
+TODO & TODO & TODO \\
+\midrule
+TODO & TODO & TODO \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{风险与应对}
+
+\begin{longtable}{p{4cm}p{5cm}p{5cm}}
+\caption{主要风险与应对策略} \\
+\toprule
+\textbf{风险} & \textbf{表现} & \textbf{应对} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{风险} & \textbf{表现} & \textbf{应对} \\
+\midrule
+\endhead
+选题太泛 & TODO & TODO \\
+\midrule
+数据不支撑 & TODO & TODO \\
+\midrule
+贡献不清 & TODO & TODO \\
+\midrule
+评估不真实 & TODO & TODO \\
+\midrule
+伦理或隐私风险 & TODO & TODO \\
+\bottomrule
+\end{longtable}
+
+\section{下一步工作}
+
+\subsection{近期两周}
+
+\begin{itemize}[leftmargin=2em]
+  \item TODO。
+\end{itemize}
+
+\subsection{一个月内}
+
+\begin{itemize}[leftmargin=2em]
+  \item TODO。
+\end{itemize}
+
+\subsection{两到四个月内}
+
+\begin{itemize}[leftmargin=2em]
+  \item TODO。
+\end{itemize}
+
+\section{最终总结}
+
+\begin{tcolorbox}[keybox,title=最终总结]
+TODO：用一段强判断收束，说明这个方向应该继续、收缩还是放弃；下一步最该做什么；哪些话现在不能写进论文。
+\end{tcolorbox}
+
+\end{document}

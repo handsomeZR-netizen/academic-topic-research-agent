@@ -1,0 +1,160 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+
+\usepackage[a4paper,margin=2.4cm]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{float}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\newcounter{none}
+
+\definecolor{mainblue}{RGB}{28,90,160}
+\definecolor{lightblue}{RGB}{235,244,255}
+\definecolor{darkgray}{RGB}{70,70,70}
+\definecolor{accentorange}{RGB}{230,120,40}
+\definecolor{softgreen}{RGB}{235,250,240}
+
+\hypersetup{colorlinks=true,linkcolor=mainblue,urlcolor=mainblue,citecolor=mainblue}
+
+\titleformat{\section}{\Large\bfseries\color{mainblue}}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\large\bfseries\color{darkgray}}{\thesubsection}{0.8em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{darkgray}}{\thesubsubsection}{0.8em}{}
+
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\lhead{选题前置调研}
+\rhead{研究方案报告}
+\cfoot{\thepage}
+
+\tcbset{
+  mybox/.style={colback=lightblue,colframe=mainblue,arc=2mm,boxrule=0.8pt,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm},
+  keybox/.style={colback=softgreen,colframe=green!50!black,arc=2mm,boxrule=0.8pt,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm},
+  warnbox/.style={colback=orange!8,colframe=accentorange,arc=2mm,boxrule=0.8pt,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm}
+}
+
+\title{\vspace{-1.5cm}\textbf{选题前置调研报告}\\[0.5em]\large TODO：项目副标题或英文标题}
+\author{TODO}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[mybox,title=一句话概括]
+TODO：用 2--4 句话说明项目到底研究什么、不是研究什么、为什么现在值得做、目前可行性是 Pass / Weak Pass / Fail。
+\end{tcolorbox}
+
+\tableofcontents
+\newpage
+
+\section{项目核心判断}
+
+\subsection{核心问题不是}
+
+TODO。
+
+\subsection{真正值得研究的问题}
+
+\begin{tcolorbox}[keybox,title=核心研究问题]
+TODO。
+\end{tcolorbox}
+
+\subsection{本项目定位}
+
+\begin{table}[H]
+\centering
+\caption{本项目定位}
+\begin{tabularx}{\textwidth}{p{3cm}X}
+\toprule
+\textbf{维度} & \textbf{定位} \\
+\midrule
+不是 & TODO \\
+是 & TODO \\
+核心输入 & TODO \\
+核心输出 & TODO \\
+核心价值 & TODO \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{为什么适合目标会议或期刊}
+
+TODO。
+
+\section{核心概念与研究问题}
+
+TODO。
+
+\section{输入模态、数据模态或研究对象边界}
+
+TODO。
+
+\section{系统方案或方法方案}
+
+TODO。
+
+\section{交互/方法设计原则}
+
+TODO。
+
+\section{算法与数据的最小可行方案}
+
+TODO。
+
+\section{典型案例或使用场景}
+
+\begin{tcolorbox}[mybox,title=Demo Case]
+\textbf{场景输入：} TODO\\
+\textbf{系统/方法判断：} TODO\\
+\textbf{推荐输出：} TODO\\
+\textbf{评价信号：} TODO
+\end{tcolorbox}
+
+\section{研究问题与评价方案}
+
+TODO。
+
+\section{数据集支持与可行性判断}
+
+\begin{tcolorbox}[warnbox,title=可行性结论]
+\textbf{Verdict：} TODO：Pass / Weak Pass / Fail。
+\end{tcolorbox}
+
+\section{标题润色方案与摘要}
+
+TODO。
+
+\section{预期论文结构}
+
+TODO。
+
+\section{投稿定位}
+
+TODO。
+
+\section{风险与应对}
+
+TODO。
+
+\section{下一步工作}
+
+TODO。
+
+\section{最终总结}
+
+\begin{tcolorbox}[keybox,title=最终总结]
+TODO：用一段强判断收束，说明这个方向应该继续、收缩还是放弃。
+\end{tcolorbox}
+
+\end{document}
+

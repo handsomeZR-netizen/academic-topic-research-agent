@@ -1,0 +1,16 @@
+# 用户初始输入。assistant 会在 Intake Protocol 阶段帮你填这些字段；你也可以手动改。
+# 每个字段的注释里给了"例如"占位答案——只是示例，不要直接保留。
+
+topic_title: ""          # 例如：面向高中物理教师的 AI 概念诊断决策支持系统
+target_venue: ""         # 例如：CHI 2026 / LAK 2026 / CSCW 2026 / 教育研究中文期刊
+field: ""                # 例如：HCI / 教育技术 / AIED / 学习分析
+year_range: ""           # 例如：2018-2025（HCI 主流默认近 5-7 年；老问题可放宽）
+depth: "standard"        # quick(10-20篇) | standard(30-50篇) | deep(80-120篇)
+must_have:               # 必含关键词，至少 2 个
+  - ""                   # 例如：教师端
+  - ""                   # 例如：课堂决策支持
+avoid:                   # 必避关键词，至少 1 个
+  - ""                   # 例如：纯学生端学习辅助
+dataset_requirement: ""  # 例如：需要真实课堂视频/对话数据；或：可接受公开基准；或：可走形成性访谈
+output_language: "中文"  # 中文 | English；标题/摘要可双语
+source_documents: []     # 例如：["./pdfs/proposal.pdf", "./drafts/idea_notes.md"]
